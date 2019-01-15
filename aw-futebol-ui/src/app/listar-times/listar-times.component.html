@@ -1,0 +1,29 @@
+
+<div  *ngFor="let time of times">
+  <div class="card text-center">
+    <div class="card-header">
+      <h5 class="card-title">{{time.nomecompletodotime}}</h5>
+    </div>
+    <div class="card-body">
+     <div class="row">
+      <div class="col-md-6">
+        <p class="text-spacing" align="left"><b>UF:</b> {{time.uf}}</p>
+        <p class="text-spacing" align="left"><b>Nome:</b> {{time.nomedotime}}</p>
+        <p class="text-spacing" align="left"><b>Fundação:</b> {{time.datafundacao  | date:'dd/MM/yyyy'}}</p>
+        <p align="left"><b>Cor(es):</b> {{time.cores}}</p>
+        <p class="text-spacing" align="left"><b>Estádio:</b> {{time.estadio}}</p>
+        <p class="text-spacing" align="left"><b>Valor:</b> {{time.valor | currency:'BRL'}}</p>
+      </div>
+      <div class="col-md-6">
+          <p><img class="imageClass" src="../assets/images/{{time.chave}}.png"/></p>
+      </div>
+     </div>
+    </div>
+    <div class="card-footer text-muted">
+        <button type="button" class="btn btn-primary btn-primary-spacing" (click)="verDetalhesTime(time.id)">Detalhe</button>..
+        <button type="button" class="btn btn-warning btn-primary-spacing" (click)="alterarDadosTime(time.id)">Alterar</button>..
+        <button type="button" class="btn btn-danger btn-primary-spacing">Apagar</button>
+    </div>
+   </div>
+   <br>
+</div>

@@ -1,0 +1,146 @@
+<div class="card" *ngIf="time">
+  <form autocomplete="off" #frm="ngForm">
+   <h5 class="card-header">
+      <span *ngIf="id === 0">Cadastro de Time de Futebol</span>
+      <span *ngIf="id != 0">Alterar Dados de Time de Futebol</span>
+    </h5>
+   <div class="card-body">
+     <h5 class="card-title">Nome do Time Completo*: 
+       <div class="form-group" [class.has-error]="nomecompletodotimectrl.invalid && nomecompletodotimectrl.touched" [class.has-sucess]="nomecompletodotimectrl.valid">
+         <input id="nomecompletodotime" name="nomecompletodotime" required type="text" [(ngModel)] = "time.nomecompletodotime" class="form-control" #nomecompletodotimectrl="ngModel">
+         <span class="help=block" *ngIf="nomecompletodotimectrl.invalid && nomecompletodotimectrl.touched">
+           O nome completo do time é um campo obrigatório. Por gentileza, informá-lo.
+         </span>
+       </div>
+     </h5>
+
+     <div class="row">
+      <div class="col-md-2">
+          <div class="form-group" [class.has-error]="ufctrl.invalid && ufctrl.touched" [class.has-sucess]="ufctrl.valid">
+            <label for="uf">UF</label>
+            <select id="uf" name="uf" [(ngModel)] = "time.uf" class="form-control" required #ufctrl="ngModel">
+              <option [ngValue]="null">Selecione a UF</option>
+              <option *ngFor="let estado of ufs" [value]="estado.uf">{{estado.uf}}</option>
+            </select>
+            <span class="help-block" *ngIf="ufctrl.invalid && ufctrl.touched">
+              UF é um campo obrigatório. Por gentileza, informá-lo.
+            </span>
+          </div>
+      </div>
+
+      <div class="col-md-4">
+       <div class="form-group" [class.has-error]="nomedotimectrl.invalid && 
+       nomedotimectrl.touched" [class.has-sucess]="nomedotimectrl.valid">
+           <label for="nomedotime">Nome do Time</label>
+           <input id="nomedotime" name="nomedotime" required type="text" [(ngModel)]="time.nomedotime" 
+           class="form-control" #nomedotimectrl="ngModel">
+           <span class="help=block" *ngIf="nomedotimectrl.invalid && nomedotimectrl.touched">
+              Nome do time é um campo obrigatório. Por gentileza, preenche-lo...
+            </span>
+       </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="form-group" [class.has-error]="ctrldatafundacao.touched && ctrldatafundacao.invalid">
+           <label for="datafundacao">Data de Fundação</label>
+                  <input id="datafundacao" name="datafundacao" 
+                  [(ngModel)]="time.datafundacao" type="text" 
+                  bsDatepicker [bsConfig]="datePickerConfig" 
+                  class="form-control" #ctrldatafundacao="ngModel">
+           <span class="help-block" *ngIf="ctrldatafundacao.touched && ctrldatafundacao.invalid">
+              Data de fundação é um campo obrigatório. Por gentileza, informá-lo...
+           </span>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="form-group" [class.has-error]="coresctrl.invalid && 
+           coresctrl.touched" [class.has-sucess]="coresctrl.valid">
+            <label for="cores">Cor(es)</label>
+            <input id="cores" name="cores" required type="text" [(ngModel)]="time.cores" 
+            class="form-control" #coresctrl="ngModel">
+            <span class="help=block" *ngIf="coresctrl.invalid && coresctrl.touched">
+                Cor(es) é um campo obrigatório. Por gentileza, preenche-lo...
+             </span>
+        </div>
+      </div>
+     </div>
+
+     <div class="row">
+        <div class="col-md-5">
+            <div class="form-group" [class.has-error]="emailctrl.invalid && emailctrl.touched" [class.has-sucess]="emailctrl.valid">
+                <label for="email"> Email</label>
+                <input id="email" name="email" required email type="text" [(ngModel)]="time.email" 
+                class="form-control" #emailctrl="ngModel">
+                <span class="help=block" *ngIf="emailctrl.invalid && emailctrl.touched">
+                   Por gentileza, preencha o campo email e verificar se formato esta correto...
+                 </span>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group" [class.has-error]="estadioctrl.invalid && estadioctrl.touched" [class.has-sucess]="estadioctrl.valid">
+                <label for="estadio">Nome do Estádio</label>
+                <input id="estadio" name="estadio" required type="text" [(ngModel)]="time.estadio" 
+                class="form-control" #estadioctrl="ngModel">
+                <span class="help=block" *ngIf="estadioctrl.invalid && estadioctrl.touched">
+                   Por gentileza, preencha o campo nome do estádio...
+                 </span>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group" [class.has-error]="valorctrl.invalid && valorctrl.touched" [class.has-sucess]="valorctrl.valid">
+                <label for="valor">Valor do Time</label>
+                <input currencyMask id="valor" name="valor" required [(ngModel)]="time.valor" class="form-control" #valorctrl="ngModel" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"/>
+                <span class="help=block" *ngIf="valorctrl.invalid && valorctrl.touched">
+                   Por gentileza, preencha o campo valor do Time...
+                 </span>
+            </div>
+        </div>
+
+       
+      </div>
+      <div class="row">
+          <div class="col-md-12">
+              <div class="form-group" [class.has-error]="chavectrl.invalid && chavectrl.touched" [class.has-sucess]="chavectrl.valid">
+                  <label for="valor">Nome do Escudo*</label>
+                  <input id="chave" name="chave" required type="text" [(ngModel)]="time.chave" 
+              class="form-control" #chavectrl="ngModel">
+                  <span class="help=block" *ngIf="chavectrl.invalid && chavectrl.touched">
+                     Por gentileza, preencha o campo Nome do Escudo...
+                   </span>
+              </div>
+         </div>
+      </div> 
+
+     </div>
+
+     
+   <div class="card-footer text-muted">
+     <div class="container-fluid">
+       <div class="row">
+           <div class="col-md-10">*Campos Obrigatórios</div>
+           <div class="col-md-2" align="right">
+
+              <span *ngIf="id === 0">
+                <button type="button" class="btn btn-primary" [disabled] = "frm.invalid" (click)="cadastrar(frm)">Cadastrar</button>
+              </span>
+
+              <span *ngIf="id != 0">
+                  <button type="button" [disabled]="frm.invalid" class="btn btn-primary btn-primary-spacing" (click)="alterar(frm)">Alterar</button>
+              </span> 
+
+           </div>
+       </div>
+     </div>
+   </div>
+  </form>
+ </div>
+ <br>
+ <span *ngIf="mensagemsucesso">
+  <div class="alert alert-success">
+    <strong>Sucesso!</strong> Time cadastrado com sucesso.
+  </div>
+ </span>
+ 

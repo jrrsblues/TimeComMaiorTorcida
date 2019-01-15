@@ -1,0 +1,13 @@
+.formatartexto{
+    font-family: Calibri, Arial, Verdana, Tahoma, Sans-Serif;
+    font-size: 12px;
+}
+
+.imageClass{
+    width:20px;
+    height:20px;
+}
+
+.alinhar-direita {
+    float: right !important;
+}
